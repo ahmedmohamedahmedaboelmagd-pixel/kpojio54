@@ -1,0 +1,57 @@
+{
+    "electronics": [
+        {
+            "id": "p1",
+            "name": "شاحن",
+            "price": 900,
+            "image": "جدجخمجحك",
+            "desc": "95854"
+        },
+        {
+            "id": "p2",
+            "name": "سماعات",
+            "price": 8111,
+            "image": "po;",
+            "desc": "op;o"
+        },
+        {
+            "id": "p3",
+            "name": "حامل لابيتوب",
+            "price": 200,
+            "image": "C:\\Users\\Mohamed Faisal\\Desktop\\New folder\/unnamed (2).png",
+            "desc": "klj;\r\nتااهن\r\nخناتهخاهع\r\n56465\r\n65465نمتخم\r\nهخعحعغ\r\nخهحعححهخد\r\nاهخما"
+        },
+        {
+            "id": "p4",
+            "name": "قطة",
+            "price": 150,
+            "image": "../images/electronics/im2.png",
+            "desc": "تقثهلراغحختبتلاخليالاغهخفلتةبلااهخعقفاغتىهعفق"
+        }
+    ],
+    "clothing": [
+        {
+            "id": "p1",
+            "name": "اير بودز",
+            "price": 88,
+            "image": "88",
+            "desc": "88"
+        },
+        {
+            "id": "p2",
+            "name": "شاحن",
+            "price": 88,
+            "image": "88",
+            "desc": "888"
+        }
+    ],
+    "beauty": [
+        {
+            "id": "p1",
+            "name": "اير بودز",
+            "price": 88,
+            "image": "88",
+            "desc": "88"
+        }
+    ]
+}
