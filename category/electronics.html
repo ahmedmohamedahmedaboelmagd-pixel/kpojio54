@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإلكترونيات - متجر على الإنترنت</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../index.html">الرئيسية</a></li>
+                <li><a href="electronics.html">الإلكترونيات</a></li>
+                <li><a href="clothing.html">الملابس</a></li>
+                <li><a href="health.html">الصحة</a></li>
+                <li><a href="beauty.html">الجمال</a></li>
+                <li><a href="../cart/cart.html">السلة</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        
+        <section class="horizontal-scroll-section">
+            <h1 style="color:#2563eb; margin-bottom: 20px; font-size: 1.8em; text-align: center;">منتجات إلكترونية مميزة</h1>
+            <div id="featuredProductsContainer" class="featured-scroll-list">
+            </div>
+        </section>
+        
+        <hr style="border: 0; height: 1px; background: #e0e7ff; margin: 40px 0;">
+
+        <section>
+            <h1 style="color:#2563eb; margin-bottom: 30px; font-size: 2.2em; text-align: center;">جميع منتجات الإلكترونيات</h1>
+            <div id="electronicsProducts" class="product-list-detailed">
+                <div style="text-align: center; color: #64748b; width: 100%; padding: 40px;">جارٍ تحميل المنتجات...</div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2023 متجر على الإنترنت. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // عرض منتجات الإلكترونيات من ملف products.json
+
+        // **********************************************
+        // ********** التعديل لمنع التخزين المؤقت **********
+        // **********************************************
+        function fetchElectronicsProducts() {
+            var list = document.getElementById('electronicsProducts');
+            
+            // الحل: إضافة متغير زمني (timestamp) لمنع المتصفح من استخدام نسخة مخزنة مؤقتاً
+            var cacheBuster = '?' + new Date().getTime(); 
+            // المسار من مجلد category/ إلى products.json مع متغير منع التخزين المؤقت
+            const jsonPath = '../products.json' + cacheBuster; 
+            
+            fetch(jsonPath) 
+                .then(function(response) {
+                    if (!response.ok) {
+                        throw new Error('فشل جلب ملف المنتجات (products.json).');
+                    }
+                    return response.json();
+                })
+                .then(function(productsByCat) {
+                    var products = productsByCat['electronics'] || [];
+                    
+                    if (!products.length) {
+                        list.innerHTML = '<div style="text-align:center; color:#64748b; width:100%; padding: 20px;">لا يوجد منتجات في قسم الإلكترونيات.</div>';
+                        // إفراغ قائمة المنتجات المميزة أيضًا
+                        document.getElementById('featuredProductsContainer').innerHTML = '';
+                        return;
+                    }
+
+                    // عرض المنتجات المميزة (أول 5 منتجات)
+                    renderFeaturedProducts(products.slice(0, 5)); 
+                    
+                    // عرض جميع المنتجات بالتفصيل
+                    renderDetailedProducts(products); 
+
+                })
+                .catch(function(error) {
+                    console.error('Fetch Error:', error); 
+                    list.innerHTML = '<div style="text-align:center; color:#dc2626; width:100%; padding: 20px;">تعذر جلب المنتجات من السيرفر.</div>';
+                });
+        }
+        // **********************************************
+        
+        window.addEventListener('DOMContentLoaded', fetchElectronicsProducts);
+        
+        // دالة عرض المنتجات المميزة (للتمرير الأفقي)
+        function renderFeaturedProducts(products) {
+            const container = document.getElementById('featuredProductsContainer');
+            let html = '';
+            products.forEach(p => {
+                html += `
+                    <a href="../product/detail.html?id=${p.id}" class="featured-item">
+                        <img src="${p.image.replace('100x100', '150x150')}" alt="${p.name}" onerror="this.onerror=null;this.src='https://via.placeholder.com/150x150?text=Image+Not+Found'">
+                        <h3>${p.name}</h3>
+                        <div class="price">${p.price} ج.م</div>
+                    </a>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // دالة عرض جميع المنتجات بالتفصيل (للقائمة الرئيسية)
+        function renderDetailedProducts(products) {
+            const list = document.getElementById('electronicsProducts');
+            let html = '';
+            products.forEach(p => {
+                html += `
+                    <div class="product-item-detailed">
+                        <div class="product-image-detailed">
+                            <img src="${p.image.replace('100x100', '180x180')}" alt="${p.name}" onerror="this.onerror=null;this.src='https://via.placeholder.com/180x180?text=Image+Not+Found'">
+                        </div>
+                        <div class="product-info-detailed">
+                            <h2>${p.name}</h2>
+                            <p class="description">${p.desc}</p>
+                            <div class="rating">تقييم: ${p.rating || 'غير متوفر'} نجوم</div>
+                            <div class="price-action">
+                                <span class="price">${p.price} ج.م</span>
+                                <a href="../product/detail.html?id=${p.id}" class="view-details-btn">عرض التفاصيل</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            list.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
