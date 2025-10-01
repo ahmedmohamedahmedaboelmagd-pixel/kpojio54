@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل المنتج</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /* أنماط أساسية موحدة للصفحة */
+        body {
+            background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            direction: rtl; 
+        }
+        header {
+            background: #2563eb;
+            color: #fff;
+            padding: 28px 0 16px 0;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 12px 0;
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05em;
+            padding: 7px 16px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        nav ul li a:hover {
+            background: #1e40af;
+        }
+        main {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 32px;
+            text-align: right;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #64748b;
+            margin-top: 40px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../index.html">الرئيسية</a></li>
+                <li><a href="../category/electronics.html">الإلكترونيات</a></li>
+                <li><a href="../category/clothing.html">الملابس</a></li>
+                <li><a href="../category/health.html">الصحة</a></li>
+                <li><a href="../category/beauty.html">الجمال</a></li>
+                <li><a href="../cart/cart.html">السلة</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="product-details"></section>
+        
+        <div class="divider"></div>
+        <section id="review-section">
+            <h2 class="section-title">⭐ تقييم المنتج ومراجعات العملاء</h2>
+            
+            <div class="review-form-container">
+                <h3>أضف تقييمك</h3>
+                <form id="review-form">
+                    <div class="rating-stars" id="rating-stars">
+                        <span data-rating="5">★</span>
+                        <span data-rating="4">★</span>
+                        <span data-rating="3">★</span>
+                        <span data-rating="2">★</span>
+                        <span data-rating="1">★</span>
+                        <input type="hidden" id="user-rating" name="rating" value="0">
+                    </div>
+                    <textarea id="review-comment" placeholder="اكتب تعليقك هنا..." required></textarea>
+                    <button type="submit" class="submit-review-btn">إرسال التقييم</button>
+                    <div id="review-message" class="message-area"></div>
+                </form>
+            </div>
+            
+            <div class="comments-list-container">
+                <h3>جميع المراجعات (<span id="review-count">0</span>)</h3>
+                <div id="comments-list">
+                    <p style="text-align: center; color: #64748b;">لا توجد مراجعات حتى الآن. كن أول من يقيّم هذا المنتج!</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+        <section id="related-products-section">
+            <h2 class="section-title">🔗 منتجات ذات صلة</h2>
+            <div id="related-products-list" class="product-list">
+                </div>
+        </section>
+
+    </main>
+    <footer>
+        <p>&copy; 2023 متجر على الإنترنت. جميع الحقوق محفوظة.</p>
+    </footer>
+    <script src="../js/product.js"></script>
+</body>
+</html>
